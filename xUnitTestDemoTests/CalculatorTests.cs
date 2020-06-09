@@ -37,6 +37,17 @@ namespace xUnitTestDemo.Tests
             outputHelper.WriteLine("TestInitialize");
         }
 
+        [Theory]
+        [InlineData(1, 2, 3)]
+        [InlineData(2, 3, 5)]
+        [InlineData(3, 5, 8)]
+        public void AddTheoryTest(int x, int y, int expected)
+        {
+            var sut = new Calculator();
+            var result = sut.Add(x, y);
+            Xunit.Assert.Equal(expected, result);
+        }
+
         /// <summary>
         /// 使用 [Fact] 标记方法为单元测试方法，可以使用 Skip 和 Timeout 参数设置跳过或超时
         /// 使用 [Trait] 标记单元测试的分组特征，在 测试资源管理器窗口>分组依据 勾选特征
