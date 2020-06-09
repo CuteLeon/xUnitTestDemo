@@ -1,10 +1,11 @@
-﻿using Xunit;
+﻿using System;
+using Xunit;
 using Xunit.Abstractions;
 
 namespace xUnitTestDemo.Tests
 {
     [Trait("测试目录-Class", "单元测试-Class")]
-    public class CalculatorTests
+    public class CalculatorTests : IDisposable
     {
         private readonly ITestOutputHelper outputHelper;
 
@@ -31,6 +32,11 @@ namespace xUnitTestDemo.Tests
 
             // Assert
             Assert.Equal(3, result);
+        }
+
+        public void Dispose()
+        {
+            outputHelper.WriteLine("Test class dispose ...");
         }
     }
 }
