@@ -1,4 +1,5 @@
 ﻿using System;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Xunit;
 using Xunit.Abstractions;
 
@@ -9,9 +10,31 @@ namespace xUnitTestDemo.Tests
     {
         private readonly ITestOutputHelper outputHelper;
 
+        /// <summary>
+        /// 每个单元测试方法都会重复创建一个单元测试类的新实例
+        /// </summary>
+        /// <param name="outputHelper"></param>
         public CalculatorTests(ITestOutputHelper outputHelper)
         {
             this.outputHelper = outputHelper;
+        }
+
+        [AssemblyInitialize]
+        public void AssemblyInitialize()
+        {
+            outputHelper.WriteLine("AssemblyInitialize");
+        }
+
+        [ClassInitialize]
+        public void ClassInitialize()
+        {
+            outputHelper.WriteLine("ClassInitialize");
+        }
+
+        [TestInitialize]
+        public void TestInitialize()
+        {
+            outputHelper.WriteLine("TestInitialize");
         }
 
         /// <summary>
@@ -31,7 +54,7 @@ namespace xUnitTestDemo.Tests
             var result = sut.Add(1, 2);
 
             // Assert
-            Assert.Equal(3, result);
+            Xunit.Assert.Equal(3, result);
         }
 
         public void Dispose()
