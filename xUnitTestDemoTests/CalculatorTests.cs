@@ -41,6 +41,7 @@ namespace xUnitTestDemo.Tests
         [InlineData(1, 2, 3)]
         [InlineData(2, 3, 5)]
         [InlineData(3, 5, 8)]
+        // [MemberData(,,,,)]
         public void AddTheoryTest(int x, int y, int expected)
         {
             var sut = new Calculator();
